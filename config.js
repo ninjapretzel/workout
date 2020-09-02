@@ -4,7 +4,7 @@ const DEV = fs.existsSync(".dev");
 const config = {
 	port: !DEV ? process.env.PORT : 3000,
 	db: {
-		url: "localhost:27017/workoutTracker",
+		url: "mongodb://localhost:27017/workoutTracker",
 	},
 };
 
@@ -16,7 +16,7 @@ if (!DEV) {
 		dbname: process.env.ATDB_DBNAME, // Add ATDB_DBNAME to heroku console
 	}
 	const { user, password, host, dbname } = config.db;
-	config.db.url = `${user}:${password}@${host}/${dbname}?retryWrites=true&w=majority`
+	config.db.url = `mongodb+srv://${user}:${password}@${host}/${dbname}?retryWrites=true&w=majority`
 }
 
 module.exports = config;
